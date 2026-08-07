@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Classroom</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============================= -->
+<!-- HEADER -->
+<!-- ============================= -->
+<header class="site-header">
+    <div class="logo">📘 English Classroom</div>
+    <nav>
+        <a href="#cronograma">Cronograma</a>
+        <a href="#resumen">Mis Notas</a>
+    </nav>
+</header>
+
+<!-- ============================= -->
+<!-- HERO -->
+<!-- ============================= -->
+<section class="hero">
+    <p class="hero-eyebrow">Curso 2026</p>
+    <h1>Learn English.<br>Track every class.</h1>
+    <svg class="chalk-underline" viewBox="0 0 260 20" aria-hidden="true">
+        <path d="M4 14 C 60 4, 120 18, 180 8 S 250 4, 256 12" />
+    </svg>
+    <p class="hero-sub">Consulta el cronograma del curso y revisa tus notas, clase por clase.</p>
+    <a href="#cronograma" class="btn-chalk">Ver cronograma</a>
+</section>
+
+<!-- ============================= -->
+<!-- CRONOGRAMA -->
+<!-- ============================= -->
+<section id="cronograma">
+    <p class="section-eyebrow">Plan del curso</p>
+    <h2>📅 Cronograma</h2>
+
+    <div id="tabsMeses" class="tabs-meses"></div>
+    <div id="panelesMeses"></div>
+</section>
+
+<!-- ============================= -->
+<!-- RESUMEN GENERAL -->
+<!-- ============================= -->
+<section id="resumen">
+    <p class="section-eyebrow">Progreso</p>
+    <h2>📝 Mis Notas — Resumen general</h2>
+    <div id="resumenGeneral" class="resumen-grid"></div>
+</section>
+
+<footer>
+    <p>© 2026 English Classroom · Plataforma para el seguimiento del curso.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

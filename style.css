@@ -1,0 +1,371 @@
+/* =====================================================
+   TOKENS
+===================================================== */
+:root{
+    --chalkboard: #1F3B2E;
+    --chalkboard-dark: #16291F;
+    --chalk: #F5F1E6;
+    --paper: #FBF9F4;
+    --card: #FFFFFF;
+    --ink: #22303A;
+    --ink-soft: #5B6B72;
+    --accent-gold: #F2B705;
+    --pass: #2F8F5B;
+    --pass-bg: #E7F5EC;
+    --fail: #C1443C;
+    --fail-bg: #FBEAE8;
+    --line: #E4DFD3;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-hand: 'Caveat', cursive;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{ scroll-behavior:smooth; }
+
+body{
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height:1.5;
+}
+
+h1,h2,h3,h4{ font-family: var(--font-display); }
+
+/* =====================================================
+   HEADER
+===================================================== */
+.site-header{
+    background: var(--chalkboard);
+    color: var(--chalk);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 48px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    border-bottom:3px solid var(--accent-gold);
+}
+
+.logo{
+    font-family: var(--font-display);
+    font-size:22px;
+    font-weight:700;
+}
+
+.site-header nav{ display:flex; gap:32px; }
+
+.site-header nav a{
+    color: var(--chalk);
+    text-decoration:none;
+    font-weight:500;
+    font-size:15px;
+    opacity:.85;
+    transition:.25s;
+    border-bottom:2px solid transparent;
+    padding-bottom:4px;
+}
+
+.site-header nav a:hover{
+    opacity:1;
+    border-bottom-color: var(--accent-gold);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero{
+    background: radial-gradient(circle at 20% 20%, #2A4B3A, var(--chalkboard-dark) 70%);
+    color: var(--chalk);
+    text-align:center;
+    padding:100px 24px 90px;
+}
+
+.hero-eyebrow{
+    font-family: var(--font-hand);
+    font-size:22px;
+    color: var(--accent-gold);
+    margin-bottom:6px;
+}
+
+.hero h1{
+    font-size:44px;
+    font-weight:700;
+    line-height:1.15;
+}
+
+.chalk-underline{
+    width:220px;
+    height:16px;
+    margin:14px auto 0;
+    display:block;
+}
+.chalk-underline path{
+    fill:none;
+    stroke: var(--accent-gold);
+    stroke-width:3;
+    stroke-linecap:round;
+}
+
+.hero-sub{
+    max-width:480px;
+    margin:22px auto 30px;
+    color: #D9E3DA;
+    font-size:16px;
+}
+
+.btn-chalk{
+    display:inline-block;
+    background: var(--accent-gold);
+    color: var(--chalkboard-dark);
+    font-weight:600;
+    text-decoration:none;
+    padding:14px 30px;
+    border-radius:8px;
+    box-shadow:0 6px 0 #b98a03;
+    transition: transform .15s, box-shadow .15s;
+}
+.btn-chalk:hover{
+    transform:translateY(2px);
+    box-shadow:0 4px 0 #b98a03;
+}
+
+/* =====================================================
+   SECCIONES GENERALES
+===================================================== */
+section{
+    max-width:1000px;
+    margin:0 auto;
+    padding:70px 24px;
+}
+
+.section-eyebrow{
+    font-family: var(--font-hand);
+    font-size:20px;
+    color: var(--pass);
+}
+
+section h2{
+    font-size:30px;
+    color: var(--ink);
+    margin-bottom:30px;
+}
+
+/* =====================================================
+   TABS DE MESES (estilo pestañas de carpeta)
+===================================================== */
+.tabs-meses{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:0;
+}
+
+.tab-mes{
+    font-family: var(--font-display);
+    background: var(--card);
+    color: var(--ink-soft);
+    border:2px solid var(--line);
+    border-bottom:none;
+    padding:12px 22px;
+    border-radius:10px 10px 0 0;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    position:relative;
+    top:2px;
+}
+
+.tab-mes:hover{ color: var(--ink); }
+
+.tab-mes.activo{
+    background: var(--chalkboard);
+    color: var(--chalk);
+    border-color: var(--chalkboard);
+}
+
+.tab-mes.vacio{
+    opacity:.55;
+}
+
+/* =====================================================
+   PANEL DEL MES
+===================================================== */
+.panel-mes{
+    display:none;
+    background: var(--card);
+    border:2px solid var(--chalkboard);
+    border-radius:0 12px 12px 12px;
+    padding:26px;
+}
+
+.panel-mes.abierto{ display:block; }
+
+.temas-lista{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+/* FICHA DE TEMA (index card) */
+.tema-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    background: var(--paper);
+}
+
+.tema-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 18px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.tema-header .tema-nombre{ font-size:17px; }
+
+.tema-header .tema-meta{
+    font-size:13px;
+    color: var(--ink-soft);
+    font-weight:500;
+}
+
+.tema-toggle-icon{
+    font-size:13px;
+    color: var(--ink-soft);
+    transition: transform .2s;
+}
+
+.tema-card.abierto .tema-toggle-icon{ transform: rotate(180deg); }
+
+.clases-panel{
+    display:none;
+    padding:0 18px 18px;
+    border-top:1px solid var(--line);
+}
+
+.tema-card.abierto .clases-panel{ display:block; padding-top:16px; }
+
+.clases-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;
+}
+
+.clase-mini{
+    background: var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+}
+
+.clase-mini h4{
+    font-size:15px;
+    margin-bottom:10px;
+    color: var(--ink);
+}
+
+.actividad-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color: var(--ink-soft);
+    padding:4px 0;
+}
+
+.sin-clases{
+    color: var(--ink-soft);
+    font-size:14px;
+    font-style:italic;
+}
+
+/* =====================================================
+   SELLO DE PROMEDIO (signature element)
+===================================================== */
+.sello{
+    display:inline-block;
+    margin-top:10px;
+    font-family: var(--font-hand);
+    font-size:20px;
+    font-weight:700;
+    padding:4px 14px;
+    border:2px solid currentColor;
+    border-radius:6px;
+    transform: rotate(-3deg);
+}
+
+.sello.aprobado{ color: var(--pass); background: var(--pass-bg); }
+.sello.reprobado{ color: var(--fail); background: var(--fail-bg); }
+
+/* =====================================================
+   RESUMEN GENERAL
+===================================================== */
+.resumen-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.resumen-card{
+    background: var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:22px;
+    text-align:center;
+}
+
+.resumen-card h3{
+    font-size:16px;
+    color: var(--ink-soft);
+    margin-bottom:10px;
+    font-weight:500;
+}
+
+.resumen-card .valor{
+    font-family: var(--font-display);
+    font-size:32px;
+    font-weight:700;
+}
+
+.resumen-card.aprobado .valor{ color: var(--pass); }
+.resumen-card.reprobado .valor{ color: var(--fail); }
+
+.resumen-card.total{
+    background: var(--chalkboard);
+}
+.resumen-card.total h3{ color:#C7D6CA; }
+.resumen-card.total .valor{ color: var(--accent-gold); }
+
+/* =====================================================
+   FOOTER
+===================================================== */
+footer{
+    text-align:center;
+    padding:30px 24px 50px;
+    color: var(--ink-soft);
+    font-size:13px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 640px){
+    .site-header{ padding:16px 20px; flex-direction:column; gap:12px; }
+    .hero h1{ font-size:32px; }
+    section{ padding:50px 18px; }
+    .tab-mes{ padding:10px 16px; font-size:14px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+}
