@@ -9,16 +9,27 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 /* =====================================================
    LOGIN
 ===================================================== */
+const CLAVE_SESION = "englishClassroom.sesion";
+
 $("#formLogin").addEventListener("submit", (e) => {
     e.preventDefault();
     const usuario = $("#loginUsuario").value.trim().toLowerCase();
     const password = $("#loginPassword").value;
     const registro = USUARIOS[usuario];
     const errorBox = $("#loginError");
+    const recordar = $("#loginRecordar").checked;
 
     if (registro && registro.password === password) {
         sesion = { usuario, rol: registro.rol, nombre: registro.nombre };
         errorBox.hidden = true;
+
+        // Mantener sesión iniciada en este dispositivo (opcional)
+        if (recordar) {
+            localStorage.setItem(CLAVE_SESION, JSON.stringify(sesion));
+        } else {
+            localStorage.removeItem(CLAVE_SESION);
+        }
+
         iniciarApp();
     } else {
         errorBox.textContent = "Usuario o contraseña incorrectos.";
@@ -26,19 +37,31 @@ $("#formLogin").addEventListener("submit", (e) => {
     }
 });
 
-$$(".demo-fill").forEach(btn => {
-    btn.addEventListener("click", () => {
-        $("#loginUsuario").value = btn.dataset.usuario;
-        $("#loginPassword").value = btn.dataset.password;
-    });
-});
-
 $("#btnLogout").addEventListener("click", () => {
     sesion = null;
+    localStorage.removeItem(CLAVE_SESION);
     $("#appShell").hidden = true;
     $("#loginScreen").hidden = false;
     $("#formLogin").reset();
 });
+
+/* Al cargar la página: si ya había una sesión guardada, entra directo
+   a la plataforma sin pedir usuario/contraseña de nuevo. */
+(function recuperarSesion() {
+    const guardada = localStorage.getItem(CLAVE_SESION);
+    if (!guardada) return;
+    try {
+        const datos = JSON.parse(guardada);
+        if (datos && USUARIOS[datos.usuario] && USUARIOS[datos.usuario].rol === datos.rol) {
+            sesion = datos;
+            iniciarApp();
+        } else {
+            localStorage.removeItem(CLAVE_SESION);
+        }
+    } catch {
+        localStorage.removeItem(CLAVE_SESION);
+    }
+})();
 
 function iniciarApp() {
     $("#loginScreen").hidden = true;
