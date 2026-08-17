@@ -1,74 +1,150 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>English Classroom</title>
-
-    <link rel="icon" type="image/png" href="icono.png">
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Classroom · Portal Académico</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <!-- ============================= -->
-<!-- HEADER -->
+<!-- LOGIN -->
 <!-- ============================= -->
-<header class="site-header">
-    <div class="logo">📘 English Classroom 2</div>
-    <nav>
-        <a href="#cronograma">Cronograma</a>
-        <a href="#resumen">Mis Notas</a>
-    </nav>
-</header>
+<div id="loginScreen" class="login-screen">
+    <div class="login-card">
+        <div class="login-brand">
+            <span class="login-crest">EC</span>
+            <div>
+                <p class="login-brand-name">English Classroom</p>
+                <p class="login-brand-sub">Portal académico · Semestre 2026-2</p>
+            </div>
+        </div>
+
+        <form id="formLogin" class="login-form">
+            <label for="loginUsuario">Usuario</label>
+            <input type="text" id="loginUsuario" autocomplete="username" required>
+
+            <label for="loginPassword">Contraseña</label>
+            <input type="password" id="loginPassword" autocomplete="current-password" required>
+
+            <p id="loginError" class="login-error" hidden></p>
+
+            <button type="submit" class="btn-primary">Ingresar</button>
+        </form>
+
+        <div class="login-demo">
+            <p>Accesos de demostración:</p>
+            <button type="button" class="demo-fill" data-usuario="estudiante" data-password="Ingles2026">👤 Estudiante</button>
+            <button type="button" class="demo-fill" data-usuario="profesor" data-password="Docente2026*">🧑‍🏫 Profesor</button>
+        </div>
+    </div>
+</div>
 
 <!-- ============================= -->
-<!-- HERO -->
+<!-- APP -->
 <!-- ============================= -->
-<section class="hero">
-    <p class="hero-eyebrow">Curso 2026</p>
-    <h1>Learn English.<br>Track every class.</h1>
-    <svg class="chalk-underline" viewBox="0 0 260 20" aria-hidden="true">
-        <path d="M4 14 C 60 4, 120 18, 180 8 S 250 4, 256 12" />
-    </svg>
-    <p class="hero-sub">Consulta el cronograma del curso y revisa tus notas, clase por clase.</p>
-    <a href="#cronograma" class="btn-chalk">Ver cronograma</a>
-</section>
+<div id="appShell" class="app-shell" hidden>
 
-<!-- ============================= -->
-<!-- CRONOGRAMA -->
-<!-- ============================= -->
-<section id="cronograma">
-    <p class="section-eyebrow">Plan del curso</p>
-    <h2>📅 Cronograma</h2>
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="login-crest">EC</span>
+            <span>English<br>Classroom</span>
+        </div>
+        <nav class="sidebar-nav">
+            <button class="nav-link" data-vista="dashboard">🏠 Inicio</button>
+            <button class="nav-link" data-vista="cronograma">📅 Cronograma</button>
+            <button class="nav-link" data-vista="eventos">⏰ Fechas importantes</button>
+            <button class="nav-link" data-vista="notas">📝 Notas por tema</button>
+            <button class="nav-link solo-profesor" data-vista="docente" hidden>🧑‍🏫 Panel docente</button>
+        </nav>
+        <p class="sidebar-foot">© 2026 English Classroom</p>
+    </aside>
 
-    <div id="tabsMeses" class="tabs-meses"></div>
-    <div id="panelesMeses"></div>
-</section>
+    <div class="main-col">
+        <header class="topbar">
+            <div class="topbar-title">Portal Académico</div>
+            <div class="topbar-user">
+                <span id="userRol" class="role-badge"></span>
+                <span id="userNombre" class="user-nombre"></span>
+                <button id="btnLogout" class="btn-ghost">Salir</button>
+            </div>
+        </header>
 
-<!-- ============================= -->
-<!-- RESUMEN GENERAL -->
-<!-- ============================= -->
-<section id="resumen">
-    <p class="section-eyebrow">Progreso</p>
-    <h2>📝 Mis Notas — Resumen general</h2>
-    <div id="resumenGeneral" class="resumen-grid"></div>
-</section>
+        <main class="content">
 
-<footer>
-    <p>© 2026 English Classroom · Plataforma para el seguimiento del curso.</p>
-</footer>
+            <section id="vista-dashboard" class="vista">
+                <p class="section-eyebrow">Resumen</p>
+                <h2>Bienvenido/a</h2>
+                <div id="dashboardCards" class="dashboard-grid"></div>
+            </section>
+
+            <section id="vista-cronograma" class="vista">
+                <p class="section-eyebrow">Plan del curso</p>
+                <h2>Cronograma de clases</h2>
+                <div id="tabsMeses" class="tabs-meses"></div>
+                <div id="panelesMeses"></div>
+            </section>
+
+            <section id="vista-eventos" class="vista">
+                <p class="section-eyebrow">No te lo pierdas</p>
+                <h2>Fechas importantes</h2>
+                <div id="listaEventos" class="eventos-lista"></div>
+            </section>
+
+            <section id="vista-notas" class="vista">
+                <p class="section-eyebrow">Boletín</p>
+                <h2>Notas por tema</h2>
+                <p class="section-hint">Haz clic en un tema para ver sus clases, actividades y notas.</p>
+                <div id="listaTemas" class="temas-lista"></div>
+            </section>
+
+            <section id="vista-docente" class="vista solo-profesor" hidden>
+                <p class="section-eyebrow">Panel docente</p>
+                <h2>Registrar notas</h2>
+                <p class="section-hint">Deja el campo vacío para que la actividad quede en N.A. Rango sugerido: 0.0 – 5.0.</p>
+
+                <div class="docente-toolbar">
+                    <button id="btnGuardarNotas" class="btn-primary">💾 Guardar notas</button>
+                    <button id="btnExportar" class="btn-ghost">⬇️ Exportar notas (.json)</button>
+                    <label class="btn-ghost btn-file">
+                        ⬆️ Importar notas (.json)
+                        <input type="file" id="inputImportar" accept="application/json" hidden>
+                    </label>
+                    <span id="guardadoMsg" class="msg-ok" hidden>✔ Notas guardadas</span>
+                    <span id="importadoMsg" class="msg-ok" hidden>✔ Notas importadas</span>
+                </div>
+
+                <div class="tabla-scroll">
+                    <table class="tabla-docente">
+                        <thead>
+                            <tr>
+                                <th>Clase</th>
+                                <th>Vocabulary</th>
+                                <th>Speaking</th>
+                                <th>Listening</th>
+                                <th>Writing</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaDocente"></tbody>
+                    </table>
+                </div>
+
+                <p class="docente-nota">
+                    ⚠️ Este sitio es estático (sin servidor): las notas se guardan solo en esta
+                    sesión del navegador. Usa "Exportar" al terminar y "Importar" al volver a
+                    entrar para no perder los cambios.
+                </p>
+            </section>
+
+        </main>
+    </div>
+</div>
 
 <script src="script.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
