@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -33,14 +33,13 @@
 
             <p id="loginError" class="login-error" hidden></p>
 
+            <label class="login-remember">
+                <input type="checkbox" id="loginRecordar" checked>
+                Mantener sesión iniciada en este dispositivo
+            </label>
+
             <button type="submit" class="btn-primary">Ingresar</button>
         </form>
-
-        <div class="login-demo">
-            <p>Accesos de demostración:</p>
-            <button type="button" class="demo-fill" data-usuario="estudiante" data-password="Ingles2026">👤 Estudiante</button>
-            <button type="button" class="demo-fill" data-usuario="profesor" data-password="Docente2026*">🧑‍🏫 Profesor</button>
-        </div>
     </div>
 </div>
 
@@ -70,7 +69,7 @@
             <div class="topbar-user">
                 <span id="userRol" class="role-badge"></span>
                 <span id="userNombre" class="user-nombre"></span>
-                <button id="btnLogout" class="btn-ghost">Salir</button>
+                <button id="btnLogout" class="btn-ghost">Cerrar sesión</button>
             </div>
         </header>
 
